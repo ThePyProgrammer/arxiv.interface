@@ -65,13 +65,18 @@
                                     <v-row align="center" justify="center" class="ma-4">
                                         <v-col cols="12" sm="4">
                                             <h3>Username</h3>
-                                            <v-text-field x-large v-model="username" placeholder="Your Username" required>
+                                            <v-text-field x-large v-model="username" placeholder="Your Username" hint="root" required>
                                             </v-text-field>
                                             <v-spacer />
                                         </v-col>
                                         <v-col cols="12" sm="4">
                                             <h3>Password</h3>
-                                            <v-text-field x-large v-model="password" placeholder="Password" required>
+                                            <v-text-field x-large 
+                                            v-model="password" placeholder="Password" 
+                                            :type="showPassword ? 'text' : 'password'"
+                                            :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                                            hint="admin"
+                                            @click:append="showPassword = !showPassword" required>
                                             </v-text-field>
                                         </v-col>
                                     </v-row>

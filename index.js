@@ -115,7 +115,8 @@ var app = new Vue({
             loggedIn: false,
             drawerShown: false,
             username: "",
-            password: ""
+            password: "",
+            showPassword: false,
         };
     },
     methods: {
