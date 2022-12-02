@@ -1,27 +1,100 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <!-- "Imports" -->
+    <title>The Interface</title>
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" /> -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <link href="font.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
-<body>
-  <div id="app">
-    <v-app>
-      <v-main>
-        <v-container>Hello world</v-container>
-      </v-main>
-    </v-app>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-  <script>
-    new Vue({
-      el: '#app',
-      vuetify: new Vuetify(),
-    })
-  </script>
+<body>
+    <div id="app">
+        <v-app>
+            <div v-if="loggedIn">
+                <!-- Navigation Drawer! -->
+                <v-navigation-drawer v-model="drawerShown" temporary app>
+                    <v-list-item>
+                        <v-list-item-content>
+                            <v-icon size="100">mdi-account</v-icon>
+                            <v-list-item-title>
+                                Welcome, Prannaya!
+                            </v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                    <v-divider></v-divider>
+                    <v-list dense nav>
+                        <router-link v-for="item in routes" :to="item.path" @click="drawerShown = false"
+                            style="text-decoration: none; color: inherit;" :key="item.name">
+                            <v-list-item link>
+                                <v-list-item-icon>
+                                    <v-icon>{{ item.icon }}</v-icon>
+                                </v-list-item-icon>
+
+                                <v-list-item-content>
+                                    <v-list-item-title>
+                                        {{ item.name }}
+                                    </v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                            <v-divider />
+                        </router-link>
+                    </v-list>
+                </v-navigation-drawer>
+
+                <v-app-bar app color="primary" dark>
+                    <v-app-bar-nav-icon @click="drawerShown = !drawerShown"></v-app-bar-nav-icon>
+                    <v-toolbar-title>
+                        The Interface
+                    </v-toolbar-title>
+                </v-app-bar>
+
+                <v-main>
+                    <router-view />
+                </v-main>
+            </div>
+            <div v-else>
+                <v-main>
+                    <v-container fluid fill-height fill-width align="center" justify="center" id="intro">
+                        <v-row>
+                            <v-col align="center" justify="center">
+                                <v-form ref="form" lazy-validation>
+                                    <v-row align="center" justify="center" class="ma-4">
+                                        <v-col cols="12" sm="4">
+                                            <h3>Username</h3>
+                                            <v-text-field x-large v-model="username" placeholder="Your Username" required>
+                                            </v-text-field>
+                                            <v-spacer />
+                                        </v-col>
+                                        <v-col cols="12" sm="4">
+                                            <h3>Password</h3>
+                                            <v-text-field x-large v-model="password" placeholder="Password" required>
+                                            </v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                </v-form>
+                                <v-row align="center" justify="center" class="my-6">
+                                    <v-btn x-large
+                                        color="primary" @click="login()">
+                                        Create
+                                    </v-btn>
+                                </v-row>
+                            </v-col>
+                        </v-row>
+                    </v-container>
+                </v-main>
+            </div>
+        </v-app>
+    </div>
+    
+    <!-- "Imports" -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="https://unpkg.com/vue-router@2.0.0"></script>
+    <script src="index.js"></script>
 </body>
+
 </html>
