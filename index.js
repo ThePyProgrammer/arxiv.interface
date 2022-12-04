@@ -117,6 +117,12 @@ var app = new Vue({
             username: "",
             password: "",
             showPassword: false,
+            font: window.innerWidth < 1000 ? 3 * 0.75 : 3,
+            hideSubtitle: false,
+            imgIsLoaded: false,
+            img: "img/background.png",
+            tab: null,
+            loginItems: ["Login", "Register"]
         };
     },
     methods: {
@@ -127,11 +133,35 @@ var app = new Vue({
                 console.log("Logged In Successfully!");
                 this.loggedIn = true;
             }
+        },
+        onScroll() {
+            if (window.scrollY > this.height * 0.8) {
+                this.font = 1;
+                this.hideSubtitle = true;
+            } else {
+                this.font = 3;
+                this.hideSubtitle = false;
+            }
+            if (this.width < 1000) {
+                this.font *= 0.75;
+            }
+        },
+        imgLoaded() {
+            this.imgIsLoaded = true;
         }
     },
     computed: {
         routes() {
             return routes;
-        }
+        },
+        height() {
+            return window.innerHeight;
+        },
+        width() {
+        return window.innerWidth;
+        },
+    },
+    mounted() {
+        window.addEventListener("scroll", this.onScroll);
     }
 })

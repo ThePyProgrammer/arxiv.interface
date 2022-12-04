@@ -1,0 +1,46 @@
+img.display {
+    opacity: 0;
+    transition: 3s;
+}
+
+img.show {
+    opacity: 1;
+}
+
+.fade-enter-active {
+    transition: opacity 1s ease-in-out;
+}
+
+.fade-enter-to {
+    opacity: 1;
+}
+
+.fade-enter {
+    opacity: 0;
+}
+
+.v-btn:before {
+    opacity: 0 !important;
+}
+
+.v-ripple__container {
+    opacity: 0 !important;
+}
+
+.back-to-top {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    z-index: 996;
+    /* background: #0078ff; */
+    background: #00a8a9;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    /* transition: all 0.4s; */
+    align-items: center !important;
+    justify-content: center !important;
+    display: flex !important;
+    box-sizing: border-box;
+    text-decoration: none;
+}

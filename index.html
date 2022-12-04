@@ -8,90 +8,141 @@
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
     <link href="font.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 
 <body>
     <div id="app">
         <v-app>
-            <div v-if="loggedIn">
-                <!-- Navigation Drawer! -->
-                <v-navigation-drawer v-model="drawerShown" temporary app>
-                    <v-list-item>
-                        <v-list-item-content>
-                            <v-icon size="100">mdi-account</v-icon>
-                            <v-list-item-title>
-                                Welcome, Prannaya!
-                            </v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
+            <!-- Navigation Drawer! -->
+            <v-navigation-drawer v-if="loggedIn" v-model="drawerShown" temporary app>
+                <v-list-item>
+                    <v-list-item-content>
+                        <v-icon size="100">mdi-account</v-icon>
+                        <v-list-item-title>
+                            Welcome, Prannaya!
+                        </v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+                <v-divider></v-divider>
+                <v-list dense nav>
+                    <router-link v-for="item in routes" :to="item.path" @click="drawerShown = false"
+                        style="text-decoration: none; color: inherit;" :key="item.name">
+                        <v-list-item link>
+                            <v-list-item-icon>
+                                <v-icon>{{ item.icon }}</v-icon>
+                            </v-list-item-icon>
+
+                            <v-list-item-content>
+                                <v-list-item-title>
+                                    {{ item.name }}
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-divider />
+                    </router-link>
+                </v-list>
+            </v-navigation-drawer>
+
+
+            <v-app-bar app dense fixed dark shrink-on-scroll prominent fade-img-on-scroll :height="height" :src="this.img"
+                alt class="icon" :key="this.img" :class="imgIsLoaded ? 'show,display' : 'display'" loading="lazy"
+                @load="imgLoaded">
+                <v-container fill-width :fill-height="!this.hideSubtitle" fluid>
+                    <v-row align="center" justify="center">
+                        <v-col :align="(this.hideSubtitle) ? 'left' : 'center'" justify="center">
+                            <v-toolbar-title class="text-wrap" :style="{padding: 0, color: 'white', 'font-weight':500}">
+                                <span :style="{'font-size':Math.max((width < 333?0.75:1)*this.font,1)+'em'}">NUSH.link</span>
+                                <span v-if="!this.hideSubtitle" class="text-wrap" :style="{'font-size':Math.min(1,this.font)+'em'}">
+                                    <br>
+                                    An AppVenture Project
+                                </span>
+                            </v-toolbar-title>
+                            <a v-if="!this.hideSubtitle" href="#" v-scroll-to="'#intro'" class="back-to-top">
+                                <v-icon>mdi-arrow-down</v-icon>
+                            </a>
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-app-bar>
+            </transition>
+
+
+            <!-- <v-app-bar app color="primary" dark>
+                <v-app-bar-nav-icon v-if="loggedIn" @click="drawerShown = !drawerShown"></v-app-bar-nav-icon>
+                <v-toolbar-title>
+                    The Interface
+                </v-toolbar-title>
+            </v-app-bar> -->
+
+            <v-main v-if="loggedIn" :style="{'margin-top': height + 'px', minHeight: height+'px'}">
+                <router-view />
+            </v-main>
+            <v-main v-else :style="{'margin-top': height + 'px', minHeight: height+'px'}">
+                <v-container fluid fill-height fill-width align="center" justify="center" id="intro">
+                    <v-row>
+                        <v-col align="center" justify="center">
+                                    <span>
+                                        <span style="font-size: 2em">
+                                            Welcome to the Interface!
+                                        </span><br>
+                                        This platform has been designed with the express purpose to help you 
+                                        on your journey with AI! <br><br>
+                                        Learn AI, the good way!
+                                    </span>
+                                    <v-tabs  grow center-active v-model="tab" background-color="transparent">
+                                        <v-tab v-for="item in loginItems" :key="item">
+                                            {{ item }}
+                                        </v-tab>
+                                    </v-tabs>
+                                    <v-tabs-items v-model="tab">
+                                        <v-tab-item :key="'Login'">
+                                            <v-form ref="form" lazy-validation>
+                                                <v-row align="center" justify="center" class="ma-4">
+                                                    <v-col cols="12" sm="4">
+                                                        <h3>Username</h3>
+                                                        <v-text-field x-large v-model="username" placeholder="Your Username" hint="root" required>
+                                                        </v-text-field>
+                                                        <v-spacer />
+                                                    </v-col>
+                                                    <v-col cols="12" sm="4">
+                                                        <h3>Password</h3>
+                                                        <v-text-field x-large v-model="password" placeholder="Password" :type="showPassword ? 'text' : 'password'"
+                                                            :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'" hint="admin"
+                                                            @click:append="showPassword = !showPassword" required>
+                                                        </v-text-field>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-form>
+                                            <v-row align="center" justify="center" class="my-6">
+                                                <v-btn x-large color="primary" @click="login()">
+                                                    Login!
+                                                </v-btn>
+                                            </v-row>
+                                        </v-tab-item>
+                                    </v-tabs-items>
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-main>
+            <v-footer :padless="true">
+                <v-card dark flat tile width="100%" class="text-center lighten-1">
+                    <v-card-text>
+                        <v-btn class="mx-4" icon href="https://nush.app/" target="_blank" v-ripple="false">
+                            <img src="/sprites/appventure-logo.svg" height="40px" />
+                        </v-btn>
+                        <v-btn class="mx-4" icon href="https://www.nushigh.edu.sg/" target="_blank" v-ripple="false">
+                            <img src="/sprites/nushigh_logo.svg" height="40px" />
+                        </v-btn>
+                    </v-card-text>
                     <v-divider></v-divider>
-                    <v-list dense nav>
-                        <router-link v-for="item in routes" :to="item.path" @click="drawerShown = false"
-                            style="text-decoration: none; color: inherit;" :key="item.name">
-                            <v-list-item link>
-                                <v-list-item-icon>
-                                    <v-icon>{{ item.icon }}</v-icon>
-                                </v-list-item-icon>
-
-                                <v-list-item-content>
-                                    <v-list-item-title>
-                                        {{ item.name }}
-                                    </v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-divider />
-                        </router-link>
-                    </v-list>
-                </v-navigation-drawer>
-
-                <v-app-bar app color="primary" dark>
-                    <v-app-bar-nav-icon @click="drawerShown = !drawerShown"></v-app-bar-nav-icon>
-                    <v-toolbar-title>
-                        The Interface
-                    </v-toolbar-title>
-                </v-app-bar>
-
-                <v-main>
-                    <router-view />
-                </v-main>
-            </div>
-            <div v-else>
-                <v-main>
-                    <v-container fluid fill-height fill-width align="center" justify="center" id="intro">
-                        <v-row>
-                            <v-col align="center" justify="center">
-                                <v-form ref="form" lazy-validation>
-                                    <v-row align="center" justify="center" class="ma-4">
-                                        <v-col cols="12" sm="4">
-                                            <h3>Username</h3>
-                                            <v-text-field x-large v-model="username" placeholder="Your Username" hint="root" required>
-                                            </v-text-field>
-                                            <v-spacer />
-                                        </v-col>
-                                        <v-col cols="12" sm="4">
-                                            <h3>Password</h3>
-                                            <v-text-field x-large 
-                                            v-model="password" placeholder="Password" 
-                                            :type="showPassword ? 'text' : 'password'"
-                                            :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                                            hint="admin"
-                                            @click:append="showPassword = !showPassword" required>
-                                            </v-text-field>
-                                        </v-col>
-                                    </v-row>
-                                </v-form>
-                                <v-row align="center" justify="center" class="my-6">
-                                    <v-btn x-large
-                                        color="primary" @click="login()">
-                                        Create
-                                    </v-btn>
-                                </v-row>
-                            </v-col>
-                        </v-row>
-                    </v-container>
-                </v-main>
-            </div>
+                    <v-card-text class="white--text">
+                        Developed by David Goh Zhe Kai, James Chin Jia Jun, Lam Jun Rong, Oliver Su Zhengchong,
+                        Kai Wen Khoo, Prannaya Gupta, Devon Lim and Raghav Kumar
+                    </v-card-text>
+                </v-card>
+            </v-footer>
         </v-app>
     </div>
     
@@ -99,6 +150,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
     <script src="https://unpkg.com/vue-router@2.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-scrollto"></script>
     <script src="index.js"></script>
 </body>
 
