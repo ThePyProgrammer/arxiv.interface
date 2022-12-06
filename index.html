@@ -2,7 +2,7 @@
 <html>
 <head>
     <!-- "Imports" -->
-    <title>The Interface</title>
+    <title>arXiv.nush</title>
     <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" /> -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
@@ -53,10 +53,10 @@
                     <v-row align="center" justify="center">
                         <v-col :align="(this.hideSubtitle) ? 'left' : 'center'" justify="center">
                             <v-toolbar-title class="text-wrap" :style="{padding: 0, color: 'white', 'font-weight':500}">
-                                <span :style="{'font-size':Math.max((width < 333?0.75:1)*this.font,1)+'em'}">NUSH.link</span>
+                                <span :style="{'font-size':Math.max((width < 333?0.75:1)*this.font,1)+'em'}">arXiv.nush</span>
                                 <span v-if="!this.hideSubtitle" class="text-wrap" :style="{'font-size':Math.min(1,this.font)+'em'}">
                                     <br>
-                                    An AppVenture Project
+                                    Explore Research@NUSH like never before.
                                 </span>
                             </v-toolbar-title>
                             <a v-if="!this.hideSubtitle" href="#" v-scroll-to="'#intro'" class="back-to-top">
@@ -85,8 +85,9 @@
                         <v-col align="center" justify="center">
                                     <span>
                                         <span style="font-size: 2em">
-                                            Welcome to the Interface!
+                                            Welcome to arXiv.nush!
                                         </span><br>
+                                        This platform aims to help 
                                         This platform has been designed with the express purpose to help you 
                                         on your journey with AI! <br><br>
                                         Learn AI, the good way!
@@ -132,7 +133,7 @@
             <v-footer :padless="true">
                 <v-card dark flat tile width="100%" class="text-center lighten-1">
                     <v-card-text>
-                        An app for those who care to dream.
+                        An app for those who care to question.
                     </v-card-text>
                     <v-divider></v-divider>
                     <v-card-text class="white--text">
