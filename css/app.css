@@ -44,3 +44,13 @@ img.show {
     box-sizing: border-box;
     text-decoration: none;
 }
+
+/* .flex {
+    flex-grow: 0;
+} */
+
+.v-card--reveal {
+    top: 0;
+    opacity: 1 !important;
+    position: sticky;
+}

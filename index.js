@@ -7,7 +7,7 @@ const Main = Vue.extend({
     template: `
         <v-flex>
             <v-container fluid>
-                <v-card>
+                <!-- <v-card>
                     <v-card-title class="pa-8" style="word-break: normal">
                         {{ content }}
                     </v-card-title>
@@ -16,20 +16,120 @@ const Main = Vue.extend({
                     </div>
                     <v-spacer />
                 </v-card>
+                <v-spacer /> -->
+                <h1>Your Projects</h1>
+                    <v-layout wrap justify-space-around>
+                        <v-flex v-for="project in projects" :key="project.num" style="flex-grow: 0; padding-bottom: 10px;">
+                            <v-card class="mx-auto pa-4" max-width="400px" height="100%">
+                                <v-flex class="text-overline">
+                                    <div class="mx-4 d-flex">
+                                        {{ project.code }} <v-spacer /> {{ project.year }}
+                                    </div>
+                                </v-flex>
+                                <v-card-title class="text--primary" style="word-break: break-word;">
+                                    {{ project.title }}
+                                </v-card-title>
+                                <v-card-subtitle>{{ project.authors }}</v-card-subtitle>
+                                <v-card-actions>
+                                    <v-btn
+                                        text v-if="!project.reveal"
+                                        color="primary"
+                                        @click="project.reveal = true"
+                                    >
+                                        Learn More
+                                    </v-btn>
+                                </v-card-actions>
+                                <v-expand-transition>
+                                <div v-if="project.reveal">
+                                    <v-card-text class="pb-0">{{project.abstract}}</v-card-text>
+                                    <v-card-actions class="pt-0">
+                                        <v-btn
+                                            text
+                                            color="primary"
+                                            @click="project.reveal = false"
+                                        >
+                                            Close
+                                        </v-btn>
+                                    </v-card-actions>
+                                </div>
+                                </v-expand-transition>
+                            </v-card>
+                        </v-flex>
+                    </v-layout>
             </v-container>
         </v-flex>
     `,
     data() {
         return {
             content: "",
-            author: ""
+            author: "",
+            images: Array.from(new Array(16)).map((e, i) => ({
+                num: i + 1,
+                src: `https://picsum.photos/300/400?image=${i + 1}`
+            })),
+            projects: [
+                {
+                    num: 0,
+                    title: "Optimization of the Telemetry, Tracking and Commmunications System in a CubeSat",
+                    authors: "Mayukh Das, Prannaya Gupta",
+                    abstract: "The growing commercialisation of the space industry and novel developments in miniaturisation technology has led to an increase of adoption of Cube-Satellites, a compact and multi-layered system...", 
+                    reveal: false,
+                    code: "ES009",
+                    year: "2022"
+                },
+                {
+                    num: 1,
+                    title: "An Automated Screening System for Trinary Star System Candidates",
+                    authors: "Cheong Hao'En Ernest Emmanuel, Prannaya Gupta, Vikram Ramanathan, Yap Yuan Xi",
+                    abstract: "The discovery and cataloguing of trinary star systems is of significant interest to the field of astronomy, with implications from stellar system formation dynamics to satellite star capture frequency...",
+                    reveal: false,
+                    code: "PH022",
+                    year: "2021,2022"
+                },
+                {
+                    num: 2,
+                    title: "Analysing Gait Patterns of PD Patients to Predict FoG using Machine Learning Algorithms",
+                    authors: "Nallapuraju Ananya, Prannaya Gupta",
+                    abstract: "Parkinson's Disease (PD) is a neurodegenerative disease that affects the substantia nigra, a region in the brain. It causes many hindrances to activities of daily living (ADL). A debilitating symptom...",
+                    reveal: false,
+                    code: "BE023",
+                    year: "2022"
+                },
+                {
+                    num: 3,
+                    title: "Detecting Cyberbullying in Localised Text Messages using a Novel Classroom-Based Noisy Student Training Technique",
+                    authors: "Kabir Jain, Karimi Jain, Prannaya Gupta",
+                    abstract: "",
+                    reveal: false,
+                    code: "",
+                    year: "2022"
+                },
+                {
+                    num: 4,
+                    title: "Detecting Malware Samples using a Novel Feature Vector and Deep Learning Methods",
+                    authors: "Ashwin Lokesh, Ishneet Sukhvinder Singh, Lam Yik Ting, Lim Sue Han Justin, Prannaya Gupta, Yau Le Qi",
+                    abstract: "Dynamic malware analysis, which has been a major field in malware analysis, involves executing the malware in a controlled environment and observing its behavior. Based on dynamic analysis reports...",
+                    reveal: false,
+                    code: "SS028",
+                    year: "2022"
+                },
+                {
+                    num: 5,
+                    title: "Embodied AI for computational perception and understanding of spatial designs",
+                    authors: "Karimi Zayan, Prannaya Gupta",
+                    abstract: "Semantic Segmentation is a Computer Vision task used to identify specific regions of interest for virtual agents and autonomous robots or vehicles, specifically by assigning a class to every pixel of...",
+                    reveal: false,
+                    code: "RO014",
+                    year: "2021"
+                }
+            ]
         }
     },
     async mounted() {
-        const random_quotable_url = "https://api.quotable.io/random";
-        const response = await (await fetch(random_quotable_url)).json();
-        this.author = response.author;
-        this.content = response.content;
+        // const random_quotable_url = "https://api.quotable.io/random";
+        // const response = await (await fetch(random_quotable_url)).json();
+        // this.author = response.author;
+        // this.content = response.content;
         console.log(this.content, this.author);
     }
 
