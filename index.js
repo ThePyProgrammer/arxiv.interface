@@ -83,6 +83,83 @@ const GitHub = Vue.extend({
   }
 })
 
+const SSEF = Vue.extend({
+    name: "SSEF",
+    template: `
+        <v-container fluid>
+            <v-card>
+            <div class="pa-8">
+
+                <v-row justify='center'>
+                <v-col cols='auto' align-self="center">
+                     <v-text-field
+                        v-model="search"
+                        append-icon="mdi-magnify"
+                        label="Search"
+                        single-line
+                        hide-details
+                    ></v-text-field>
+                </v-col>
+                </v-row>
+                <v-data-table :items-per-page="15" :headers=headers :items=projects class="elevation-1"
+                            :footer-props="{showFirstLastPage: true, firstIcon: 'mdi-arrow-collapse-left', lastIcon: 'mdi-arrow-collapse-right'}"
+                            :loading=loadingProjects :search="search">
+                </v-data-table>
+            </div>
+            </v-card>
+        </v-container>
+    `,
+  data() {
+    return {
+      search: "",
+      projects: [],
+      loadingProjects: false,
+      headers: [{text: "Project Code", value: "projectCode"},
+        {text: "Title", value: "title"},
+        {text: "School", value: "school"},
+        {text: "Team Leader", value: "teamLeader"},
+        {text: "Last Updated", value: "lastUpdated", filterable: false}]
+    };
+  },
+    async mounted() {
+        this.projects = await this.loadProjects();
+        console.log(this.projects);
+    },
+  methods: {
+    async loadProjects() {
+        let finalData = []
+        await axios.post(
+            "https://www.ssef.com.sg/website/getProjectListForPublic",
+            {  
+                'project.ordering':'category',
+                resultType:'json'
+            }
+        ).then(function (response) {
+            let data = response.data;
+            let start = data.indexOf("{");
+            let end = data.lastIndexOf("}")+1;
+            data = data.slice(start, end).replace("\t", "");
+            start = data.indexOf("[");
+            end = data.lastIndexOf("]")+1;
+            data = JSON.parse(data.slice(start, end)).filter((it) => it.status == 20).map(
+                (object) => {
+                    return {
+                        projectCode: object.category1 + object.projectCode.toString().padStart(3, "0"),
+                        lastUpdated: moment(object.submissionDate, "DD/MM/YYYY hh:mm").toDate(),
+                        teamLeader: object.memberName,
+                        school: object.school.replace("&#39", "'"),
+                        title: object.title.replace("&#39", "'")
+                    }
+                }
+            );
+            finalData = data;
+        });
+        return finalData;
+    }
+  }
+})
+
+
 const routes = [
     {
         name: "Main Page",
@@ -95,6 +172,12 @@ const routes = [
         path: "/github",
         icon: "mdi-github",
         component: GitHub,
+    },
+    {
+        name: "SSEF Tracker",
+        path: "/ssef",
+        icon: "mdi-flask",
+        component: SSEF,
     },
 ]
 
@@ -112,7 +195,7 @@ var app = new Vue({
     router: router,
     data() {
         return {
-            loggedIn: false,
+            loggedIn: true,
             drawerShown: false,
             username: "",
             password: "",
@@ -133,6 +216,17 @@ var app = new Vue({
                 console.log("Logged In Successfully!");
                 this.loggedIn = true;
             }
+        },
+        register() {
+            console.log(`Username: ${this.username}`);
+            console.log(`Password: ${this.password}`);
+            console.log("Registered Successfully!");
+            this.loggedIn = true;
+        },
+        logout() {
+            this.username = "";
+            this.password = "";
+            this.loggedIn = false;
         },
         onScroll() {
             if (window.scrollY > this.height * 0.8) {

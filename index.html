@@ -45,8 +45,17 @@
                 </v-list>
             </v-navigation-drawer>
 
+            <v-app-bar v-if="loggedIn" app color="primary" dark>
+                <v-app-bar-nav-icon v-if="loggedIn" @click="drawerShown = !drawerShown"></v-app-bar-nav-icon>
+                <v-toolbar-title>
+                    arXiv.nush
+                </v-toolbar-title>
+                <v-spacer></v-spacer><v-btn color="primary" @click="logout()">Logout</v-btn>
+                <v-switch v-model="$vuetify.theme.dark" color="orange" label="Dark Mode"
+                    style="margin: 15px 15px 0 20px; display: block" />
+            </v-app-bar>
 
-            <v-app-bar app dense fixed dark shrink-on-scroll prominent fade-img-on-scroll :height="height" :src="this.img"
+            <v-app-bar v-else app dense fixed dark shrink-on-scroll prominent fade-img-on-scroll :height="height" :src="this.img"
                 alt class="icon" :key="this.img" :class="imgIsLoaded ? 'show,display' : 'display'" loading="lazy"
                 @load="imgLoaded">
                 <v-container fill-width :fill-height="!this.hideSubtitle" fluid>
@@ -66,7 +75,6 @@
                     </v-row>
                 </v-container>
             </v-app-bar>
-            </transition>
 
 
             <!-- <v-app-bar app color="primary" dark>
@@ -76,13 +84,13 @@
                 </v-toolbar-title>
             </v-app-bar> -->
 
-            <v-main v-if="loggedIn" :style="{'margin-top': height + 'px', minHeight: height+'px'}">
+            <v-main v-if="loggedIn">
                 <router-view />
             </v-main>
             <v-main v-else :style="{'margin-top': height + 'px', minHeight: height+'px'}">
                 <v-container fluid fill-height fill-width align="center" justify="center" id="intro">
-                    <v-row>
-                        <v-col align="center" justify="center">
+                    <v-row align="center" justify="center">
+                        <v-col align="center" justify="center" cols = "24" sm="8">
                                     <span>
                                         <span style="font-size: 2em">
                                             Welcome to arXiv.nush!
@@ -121,9 +129,31 @@
                                                 </v-btn>
                                             </v-row>
                                         </v-tab-item>
-                                    </v-tabs-items>
-                                    <v-tabs-items v>
-
+                                        <v-tab-item :key="'Register'">
+                                            <v-form ref="form" lazy-validation>
+                                                <v-row align="center" justify="center" class="ma-4">
+                                                    <v-col cols="12" sm="4">
+                                                        <h3>Username</h3>
+                                                        <v-text-field x-large v-model="username" placeholder="Your Username" hint="root" required>
+                                                        </v-text-field>
+                                                        <v-spacer />
+                                                    </v-col>
+                                                    <v-col cols="12" sm="4">
+                                                        <h3>Password</h3>
+                                                        <v-text-field x-large v-model="password" placeholder="Password"
+                                                            :type="showPassword ? 'text' : 'password'"
+                                                            :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'" hint="admin"
+                                                            @click:append="showPassword = !showPassword" required>
+                                                        </v-text-field>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-form>
+                                            <v-row align="center" justify="center" class="my-6">
+                                                <v-btn x-large color="primary" @click="register()">
+                                                    Register!
+                                                </v-btn>
+                                            </v-row>
+                                        </v-tab-item>
                                     </v-tabs-items>
                         </v-col>
                     </v-row>
@@ -148,6 +178,8 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
     <script src="https://unpkg.com/vue-router@2.0.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-scrollto"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/moment.min.js"></script>
     <script src="index.js"></script>
 </body>
 
