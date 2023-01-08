@@ -75,7 +75,7 @@ const Main = Vue.extend({
                     abstract: "The growing commercialisation of the space industry and novel developments in miniaturisation technology has led to an increase of adoption of Cube-Satellites, a compact and multi-layered system...", 
                     reveal: false,
                     code: "ES009",
-                    year: "2022"
+                    year: "2023"
                 },
                 {
                     num: 1,
@@ -84,16 +84,16 @@ const Main = Vue.extend({
                     abstract: "The discovery and cataloguing of trinary star systems is of significant interest to the field of astronomy, with implications from stellar system formation dynamics to satellite star capture frequency...",
                     reveal: false,
                     code: "PH022",
-                    year: "2021,2022"
+                    year: "2022,2023"
                 },
                 {
                     num: 2,
                     title: "Analysing Gait Patterns of PD Patients to Predict FoG using Machine Learning Algorithms",
-                    authors: "Nallapuraju Ananya, Prannaya Gupta",
+                    authors: "Nallapuraju Ananya, Prannaya Gupta, Ye Chen Rui",
                     abstract: "Parkinson's Disease (PD) is a neurodegenerative disease that affects the substantia nigra, a region in the brain. It causes many hindrances to activities of daily living (ADL). A debilitating symptom...",
                     reveal: false,
                     code: "BE023",
-                    year: "2022"
+                    year: "2023"
                 },
                 {
                     num: 3,
@@ -102,7 +102,7 @@ const Main = Vue.extend({
                     abstract: "",
                     reveal: false,
                     code: "",
-                    year: "2022"
+                    year: "2023"
                 },
                 {
                     num: 4,
@@ -111,7 +111,7 @@ const Main = Vue.extend({
                     abstract: "Dynamic malware analysis, which has been a major field in malware analysis, involves executing the malware in a controlled environment and observing its behavior. Based on dynamic analysis reports...",
                     reveal: false,
                     code: "SS028",
-                    year: "2022"
+                    year: "2023"
                 },
                 {
                     num: 5,
@@ -120,6 +120,15 @@ const Main = Vue.extend({
                     abstract: "Semantic Segmentation is a Computer Vision task used to identify specific regions of interest for virtual agents and autonomous robots or vehicles, specifically by assigning a class to every pixel of...",
                     reveal: false,
                     code: "RO014",
+                    year: "2023"
+                },
+                {
+                    num: 6,
+                    title: "Gait Monitoring and Analysis for Parkinson's Disease Patients",
+                    authors: "Nallapuraju Ananya, Prannaya Gupta, Ye Chen Rui",
+                    abstract: "",
+                    reveal: false,
+                    code: "BE018",
                     year: "2021"
                 }
             ]
