@@ -2,6 +2,91 @@
 // Created by Prannaya Gupta
 // 3 Dec 2022
 
+const projects = [
+    {
+        num: 0,
+        id: "ES009",
+        title: "Optimization of the Telemetry, Tracking and Commmunications System in a CubeSat",
+        authors: "Mayukh Das, Prannaya Gupta",
+        abstract: "The growing commercialisation of the space industry and novel developments in miniaturisation technology has led to an increase of adoption of Cube-Satellites, a compact and multi-layered system...", 
+        reveal: false,
+        code: "ES009",
+        year: "2023"
+    },
+    {
+        num: 1,
+        id: "PH022",
+        title: "An Automated Screening System for Trinary Star System Candidates",
+        authors: "Cheong Hao'En Ernest Emmanuel, Prannaya Gupta, Vikram Ramanathan, Yap Yuan Xi",
+        abstract: "The discovery and cataloguing of trinary star systems is of significant interest to the field of astronomy, with implications from stellar system formation dynamics to satellite star capture frequency...",
+        reveal: false,
+        code: "PH022",
+        year: "2022,2023"
+    },
+    {
+        num: 2,
+        id: "BE023",
+        title: "Analysing Gait Patterns of PD Patients to Predict FoG using Machine Learning Algorithms",
+        authors: "Nallapuraju Ananya, Prannaya Gupta, Ye Chen Rui",
+        abstract: "Parkinson's Disease (PD) is a neurodegenerative disease that affects the substantia nigra, a region in the brain. It causes many hindrances to activities of daily living (ADL). A debilitating symptom...",
+        reveal: false,
+        code: "BE023",
+        year: "2023"
+    },
+    {
+        num: 3,
+        id: "Cyberbullying",
+        title: "Detecting Cyberbullying in Localised Text Messages using a Novel Classroom-Based Noisy Student Training Technique",
+        authors: "Kabir Jain, Karimi Jain, Prannaya Gupta",
+        abstract: "",
+        reveal: false,
+        code: "",
+        year: "2023"
+    },
+    {
+        num: 4,
+        id: "SS028",
+        title: "Detecting Malware Samples using a Novel Feature Vector and Deep Learning Methods",
+        authors: "Ashwin Lokesh, Ishneet Sukhvinder Singh, Lam Yik Ting, Lim Sue Han Justin, Prannaya Gupta, Yau Le Qi",
+        abstract: "Dynamic malware analysis, which has been a major field in malware analysis, involves executing the malware in a controlled environment and observing its behavior. Based on dynamic analysis reports...",
+        reveal: false,
+        code: "SS028",
+        year: "2023"
+    },
+    {
+        num: 5,
+        id: "22.011.NUSH.PH",
+        title: "Detecting and Simulating Stable Three-Body Systems",
+        authors: "Cheong Hao'En Ernest Emmanuel, Prannaya Gupta, Vikram Ramanathan, Yap Yuan Xi",
+        abstract: "",
+        reveal: false,
+        code: "22.011.NUSH.PH",
+        year: "2022"
+    },
+    {
+        num: 6,
+        id: "21.029.SUTD.CS",
+        title: "Embodied AI for computational perception and understanding of spatial designs",
+        authors: "Karimi Zayan, Prannaya Gupta",
+        abstract: "Semantic Segmentation is a Computer Vision task used to identify specific regions of interest for virtual agents and autonomous robots or vehicles, specifically by assigning a class to every pixel of...",
+        reveal: false,
+        code: "21.029.SUTD.CS, RO014",
+        year: "2022"
+    },
+    {
+        num: 7,
+        id: "20.022.NUSE.PH",
+        title: "Gait Monitoring and Analysis for Parkinson's Disease Patients",
+        authors: "Nallapuraju Ananya, Prannaya Gupta, Ye Chen Rui",
+        abstract: "",
+        reveal: false,
+        code: "20.022.NUSE.PH, BE018",
+        year: "2021"
+    }
+]
+
+
+
 const Main = Vue.extend({
     name: "Main",
     template: `
@@ -19,7 +104,7 @@ const Main = Vue.extend({
                 <v-spacer /> -->
                 <h1>Your Projects</h1>
                     <v-layout wrap justify-space-around>
-                        <v-flex v-for="project in projects" :key="project.num" style="flex-grow: 0; padding-bottom: 10px;">
+                        <v-flex v-for="project in projects" :key="project.num" style="flex-grow: 0; padding-bottom: 40px;">
                             <v-card class="mx-auto pa-4" max-width="400px" height="100%">
                                 <v-flex class="text-overline">
                                     <div class="mx-4 d-flex">
@@ -31,6 +116,13 @@ const Main = Vue.extend({
                                 </v-card-title>
                                 <v-card-subtitle>{{ project.authors }}</v-card-subtitle>
                                 <v-card-actions>
+                                    <v-btn
+                                        text
+                                        color="primary"
+                                        dark :href="'#/projects/'+project.id" target="_blank"
+                                    >
+                                        Open
+                                    </v-btn>
                                     <v-btn
                                         text v-if="!project.reveal"
                                         color="primary"
@@ -61,85 +153,8 @@ const Main = Vue.extend({
     `,
     data() {
         return {
-            content: "",
-            author: "",
-            images: Array.from(new Array(16)).map((e, i) => ({
-                num: i + 1,
-                src: `https://picsum.photos/300/400?image=${i + 1}`
-            })),
-            projects: [
-                {
-                    num: 0,
-                    title: "Optimization of the Telemetry, Tracking and Commmunications System in a CubeSat",
-                    authors: "Mayukh Das, Prannaya Gupta",
-                    abstract: "The growing commercialisation of the space industry and novel developments in miniaturisation technology has led to an increase of adoption of Cube-Satellites, a compact and multi-layered system...", 
-                    reveal: false,
-                    code: "ES009",
-                    year: "2023"
-                },
-                {
-                    num: 1,
-                    title: "An Automated Screening System for Trinary Star System Candidates",
-                    authors: "Cheong Hao'En Ernest Emmanuel, Prannaya Gupta, Vikram Ramanathan, Yap Yuan Xi",
-                    abstract: "The discovery and cataloguing of trinary star systems is of significant interest to the field of astronomy, with implications from stellar system formation dynamics to satellite star capture frequency...",
-                    reveal: false,
-                    code: "PH022",
-                    year: "2022,2023"
-                },
-                {
-                    num: 2,
-                    title: "Analysing Gait Patterns of PD Patients to Predict FoG using Machine Learning Algorithms",
-                    authors: "Nallapuraju Ananya, Prannaya Gupta, Ye Chen Rui",
-                    abstract: "Parkinson's Disease (PD) is a neurodegenerative disease that affects the substantia nigra, a region in the brain. It causes many hindrances to activities of daily living (ADL). A debilitating symptom...",
-                    reveal: false,
-                    code: "BE023",
-                    year: "2023"
-                },
-                {
-                    num: 3,
-                    title: "Detecting Cyberbullying in Localised Text Messages using a Novel Classroom-Based Noisy Student Training Technique",
-                    authors: "Kabir Jain, Karimi Jain, Prannaya Gupta",
-                    abstract: "",
-                    reveal: false,
-                    code: "",
-                    year: "2023"
-                },
-                {
-                    num: 4,
-                    title: "Detecting Malware Samples using a Novel Feature Vector and Deep Learning Methods",
-                    authors: "Ashwin Lokesh, Ishneet Sukhvinder Singh, Lam Yik Ting, Lim Sue Han Justin, Prannaya Gupta, Yau Le Qi",
-                    abstract: "Dynamic malware analysis, which has been a major field in malware analysis, involves executing the malware in a controlled environment and observing its behavior. Based on dynamic analysis reports...",
-                    reveal: false,
-                    code: "SS028",
-                    year: "2023"
-                },
-                {
-                    num: 5,
-                    title: "Embodied AI for computational perception and understanding of spatial designs",
-                    authors: "Karimi Zayan, Prannaya Gupta",
-                    abstract: "Semantic Segmentation is a Computer Vision task used to identify specific regions of interest for virtual agents and autonomous robots or vehicles, specifically by assigning a class to every pixel of...",
-                    reveal: false,
-                    code: "RO014",
-                    year: "2023"
-                },
-                {
-                    num: 6,
-                    title: "Gait Monitoring and Analysis for Parkinson's Disease Patients",
-                    authors: "Nallapuraju Ananya, Prannaya Gupta, Ye Chen Rui",
-                    abstract: "",
-                    reveal: false,
-                    code: "BE018",
-                    year: "2021"
-                }
-            ]
+            projects: projects
         }
-    },
-    async mounted() {
-        // const random_quotable_url = "https://api.quotable.io/random";
-        // const response = await (await fetch(random_quotable_url)).json();
-        // this.author = response.author;
-        // this.content = response.content;
-        console.log(this.content, this.author);
     }
 
 })
@@ -268,6 +283,81 @@ const SSEF = Vue.extend({
   }
 })
 
+const Project = Vue.extend({
+    name: "Project",
+    template: `
+        <v-container fluid>
+            <v-flex>
+                <v-card class="mx-auto pa-4" height="100%">
+                    <v-flex class="text-overline">
+                        <div class="mx-4 d-flex">
+                            {{ project.code }} <v-spacer /> {{ project.year }}
+                        </div>
+                    </v-flex>
+                    <v-card-title> {{ project.title }} </v-card-title>
+                    <v-card-subtitle> {{ project.authors }} </v-card-subtitle>
+
+                    <v-spacer />
+
+                    <v-card-text>
+                        <div v-if="!editAbstract">
+                            {{ project.abstract }}
+                            <v-btn
+                                append-icon="mdi-magnify"
+                                color="primary"
+                                @click="editAbstract = true"
+                            >
+                                Edit
+                            </v-btn>
+                        </div>
+
+                        <div v-if="editAbstract">
+                            <v-textarea
+                                clearable
+                                auto-grow
+                                v-model = "tempAbstract"
+                                clear-icon="mdi-close-circle"
+                                label="Text"
+                                value="This is clearable text."
+                            ></v-textarea>
+                            <label id="counter">{{ wordCount(tempAbstract) }} words written</label>
+                        </div>
+                        
+                    </v-card-text>
+                </v-card>
+            </v-flex>
+
+        </v-container>
+    `,
+    data() {
+        return {
+            editAbstract: false,
+            tempAbstract: ""
+            // project: {}
+        }
+    },
+    computed: {
+        project() {
+            return this.classify(this.$route.params.id);
+        }
+    },
+    methods: {
+        classify(id) {
+            return projects.filter((it) => (it.id == id))[0];
+        },
+        wordCount(text) {
+            var content = text;
+            content = content.replace(/<\S[^><]*>/gi, "");
+            return content.match(/\w+/g) ? content.match(/\w+/g).length : 0;
+        }
+    },
+    mounted() {
+        // this.project = this.classify(this.$route.params.id);
+        this.tempAbstract = this.project.abstract;
+    }
+
+})
+
 
 const routes = [
     {
@@ -288,11 +378,22 @@ const routes = [
         icon: "mdi-flask",
         component: SSEF,
     },
+    // { 
+    //     path: '/users/:id'
+    // },
+    { 
+        path: '/projects/:id',
+        component: Project
+    }
 ]
 
 Vue.use(Vuetify);
 
-const vuetify = new Vuetify();
+const vuetify = new Vuetify({
+  theme: {
+    dark: true
+  }
+});
 const router = new VueRouter({
   routes,
 });
