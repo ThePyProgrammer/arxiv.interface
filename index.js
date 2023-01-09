@@ -620,9 +620,9 @@ Vue.use(Vuetify);
 Vue.use(VueScrollReveal);
 
 const vuetify = new Vuetify({
-//   theme: {
-//     dark: true
-//   }
+  theme: {
+    dark: true
+  }
 });
 const router = new VueRouter({
   routes,
