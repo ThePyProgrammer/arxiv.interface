@@ -133,7 +133,7 @@ const Main = Vue.extend({
                                 </v-card-actions>
                                 <v-expand-transition>
                                 <div v-if="project.reveal">
-                                    <v-card-text class="pb-0">{{project.abstract}}</v-card-text>
+                                    <v-card-text class="pb-0">{{project.abstract ? project.abstract : "No Abstract Inserted" }}</v-card-text>
                                     <v-card-actions class="pt-0">
                                         <v-btn
                                             text
@@ -301,7 +301,7 @@ const Project = Vue.extend({
 
                     <v-card-text>
                         <div v-if="!editAbstract">
-                            {{ project.abstract }}
+                            {{ project.abstract  ? project.abstract : "No Abstract Inserted" }}
                             <v-btn
                                 append-icon="mdi-magnify"
                                 color="primary"
