@@ -54,3 +54,12 @@ img.show {
     opacity: 1 !important;
     position: sticky;
 }
+
+/* #app {
+    background: url('../img/background.png') no-repeat center center fixed !important;
+    background-size: cover;
+} */
+
+section {
+    height: 100vh;
+}

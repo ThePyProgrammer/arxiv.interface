@@ -2,6 +2,123 @@
 // Created by Prannaya Gupta
 // 3 Dec 2022
 
+
+
+
+
+
+const sr = ScrollReveal();
+
+
+
+
+function generateOptions(defaultOptions, bindingValue, bindingModifiers) {
+  const options = Object.assign({}, defaultOptions, bindingValue);
+
+  if (bindingModifiers) {
+    if (bindingModifiers.reset) {
+      options.reset = true;
+    }
+
+    if (bindingModifiers.nomobile) {
+      options.mobile = false;
+    }
+
+    if (bindingModifiers.nodesktop) {
+      options.desktop = false;
+    }
+  }
+
+  return options;
+}
+
+const VueScrollReveal = {
+  install(Vue, defaultOptions) {
+    Vue.directive('scroll-reveal', {
+      inserted: (el, binding) => {
+        const options = generateOptions(defaultOptions, binding.value, binding.modifiers);
+
+        if (typeof options.class === 'string') {
+          el.classList.add(options.class);
+          delete options.class;
+        }
+
+        sr.reveal(el, options);
+      },
+      update: (el, binding) => {
+        if (binding.value != binding.oldValue) {
+          const options = generateOptions(defaultOptions, binding.value, binding.modifiers);
+
+          sr.reveal(el, options);
+        }
+      },
+    });
+
+    const $sr = {
+      isSupported() {
+        return sr.isSupported();
+      },
+      sync() {
+        sr.sync();
+      },
+      reveal(target, config, interval, sync) {
+        const options = generateOptions(defaultOptions, config);
+
+        sr.reveal(target, config, interval, sync);
+      },
+    };
+
+    Object.defineProperty(Vue.prototype, '$sr', {
+      get() {
+        return $sr;
+      },
+    });
+  },
+};
+
+
+
+
+
+
+const users = [
+    {
+        num: 0,
+        id: "h1810124",
+        name: "Prannaya Gupta",
+        readme: "Hello, I'm Prannaya! I am an avid researcher, especially in the field of AI!",
+        graduationYear: 2023
+    },
+    {
+        num: 1,
+        id: "h1810068",
+        name: "Karimi Zayan",
+        readme: "I am Zayan. Cool Graph Neural Network!",
+        graduationYear: 2023
+    },
+    {
+        num: 2,
+        id: "h1810166",
+        name: "Yap Yuan Xi",
+        readme: "I am Yuan Xi. I am a CTFer, IOer, Developer, yet somehow I can't do AI :(.",
+        graduationYear: 2023
+    },
+    {
+        num: 3,
+        id: "h1810159",
+        name: "Vikram Ramanathan",
+        readme: "I am Vikram, the mentor rep of 604! I like DnD and stuff.",
+        graduationYear: 2023
+    },
+    {
+        num: 4,
+        id: "h1910059",
+        name: "Kabir Jain",
+        readme: "I am Kabir, a resident AI lover and physics lover!",
+        graduationYear: 2024
+    }
+]
+
 const projects = [
     {
         num: 0,
@@ -86,23 +203,87 @@ const projects = [
 ]
 
 
+const Home = Vue.extend({
+    name: "Home",
+    template: `
+  <v-container fluid
+    style="background: url('img/books.jpg') no-repeat center center fixed !important; background-size: cover"
+  >
+  <section align="center"
+      justify="center" :height="height" style="fill-height:100%; margin-top:40vh;">
+    <v-row
+      align="center"
+      justify="center"
+    >
+      <v-col
+        align="center"
+        justify="center"
+      >
+        <span style="font-size: 3em">
+          arXiv.nush
+        </span>
+        <span style="font-size: 1.5em" class="text-wrap">
+          <br/>Explore Research@NUSH like never before.
+        </span>
+      </v-col>
+    </v-row>
+    </section>
 
-const Main = Vue.extend({
-    name: "Main",
+    <section v-scroll-reveal.reset>
+      <v-row
+      align="center"
+      justify="center"
+    >
+      <v-col
+        align="center"
+        justify="center"
+      >
+        <span style="font-size: 3em">
+          Doing an ARP at NUS High?
+        </span>
+        <span style="font-size: 1.5em">
+          <br/>Compile all your details in one platform.
+        </span>
+      </v-col>
+    </v-row>
+    </section>
+
+    <section v-scroll-reveal.reset>
+      <v-row
+      align="center"
+      justify="center"
+    >
+      <v-col
+        align="center"
+        justify="center"
+      >
+        <span style="font-size: 3em">
+          Enjoy more comforts!
+        </span>
+        <span style="font-size: 1.5em">
+          <br/>Submit forms, report, poster, all in one platform!
+        </span>
+      </v-col>
+    </v-row>
+    </section>
+  </v-container>
+    `,
+    computed: {
+        height() {
+            return window.innerHeight;
+        },
+        width() {
+        return window.innerWidth;
+        },
+    },
+})
+
+const Dashboard = Vue.extend({
+    name: "Dashboard",
     template: `
         <v-flex>
             <v-container fluid>
-                <!-- <v-card>
-                    <v-card-title class="pa-8" style="word-break: normal">
-                        {{ content }}
-                    </v-card-title>
-                    <div class="text-right pa-8">
-                        ~ {{ author }}
-                    </div>
-                    <v-spacer />
-                </v-card>
-                <v-spacer /> -->
-                <h1>Your Projects</h1>
+                    <h1>Your Projects</h1>
                     <v-layout wrap justify-space-around>
                         <v-flex v-for="project in projects" :key="project.num" style="flex-grow: 0; padding-bottom: 40px;">
                             <v-card class="mx-auto pa-4" max-width="400px" height="100%">
@@ -117,7 +298,6 @@ const Main = Vue.extend({
                                 <v-card-subtitle>{{ project.authors }}</v-card-subtitle>
                                 <v-card-actions>
                                     <v-btn
-                                        text
                                         color="primary"
                                         dark :href="'#/projects/'+project.id" target="_blank"
                                     >
@@ -359,12 +539,60 @@ const Project = Vue.extend({
 })
 
 
+
+const User = Vue.extend({
+    name: "User",
+    template: `
+        <v-container fluid>
+            <v-flex>
+                <v-card class="mx-auto pa-4" height="100%">
+                    <v-flex class="text-overline">
+                        <div class="mx-4 d-flex">
+                            {{ user.id.toUpperCase() }} <v-spacer /> y{{ 2029 - user.graduationYear }}
+                        </div>
+                    </v-flex>
+                    <v-card-title> {{ user.name }} </v-card-title>
+                    <v-card-subtitle> {{ user.readme }} </v-card-subtitle>
+                </v-card>
+            </v-flex>
+
+        </v-container>
+    `,
+    data() {
+        return {
+            // project: {}
+        }
+    },
+    computed: {
+       user() {
+            return this.classify(this.$route.params.id);
+        }
+    },
+    methods: {
+        classify(id) {
+            return users.filter((it) => (it.id == id))[0];
+        }
+    },
+    mounted() {
+        // this.project = this.classify(this.$route.params.id);
+        // this.tempAbstract = this.project.abstract;
+    }
+
+})
+
+
 const routes = [
     {
-        name: "Main Page",
+        name: "Home",
         path: "/",
+        icon: "mdi-home",
+        component: Home,
+    },
+    {
+        name: "Dashboard",
+        path: "/projects",
         icon: "mdi-file-table-box",
-        component: Main,
+        component: Dashboard,
     },
     {
         name: "GitHub Tracker",
@@ -378,9 +606,10 @@ const routes = [
         icon: "mdi-flask",
         component: SSEF,
     },
-    // { 
-    //     path: '/users/:id'
-    // },
+    { 
+        path: '/users/:id',
+        component: User
+    },
     { 
         path: '/projects/:id',
         component: Project
@@ -388,11 +617,12 @@ const routes = [
 ]
 
 Vue.use(Vuetify);
+Vue.use(VueScrollReveal);
 
 const vuetify = new Vuetify({
-  theme: {
-    dark: true
-  }
+//   theme: {
+//     dark: true
+//   }
 });
 const router = new VueRouter({
   routes,
@@ -413,9 +643,36 @@ var app = new Vue({
             font: window.innerWidth < 1000 ? 3 * 0.75 : 3,
             hideSubtitle: false,
             imgIsLoaded: false,
-            img: "img/background.png",
+            img: "img/books.jpg",
             tab: null,
-            loginItems: ["Login", "Register"]
+            loginItems: ["Login", "Register"],
+            routes: [
+                {
+                    name: "Home",
+                    path: "/",
+                    icon: "mdi-home",
+                },
+                {
+                    name: "Dashboard",
+                    path: "/projects",
+                    icon: "mdi-file-table-box",
+                },
+                {
+                    name: "GitHub Tracker",
+                    path: "/github",
+                    icon: "mdi-github",
+                },
+                {
+                    name: "SSEF Tracker",
+                    path: "/ssef",
+                    icon: "mdi-flask",
+                },
+                {
+                    name: "Profile",
+                    path: "/users/h1810124",
+                    icon: "mdi-account"
+                }
+            ]
         };
     },
     methods: {
