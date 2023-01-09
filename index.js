@@ -2,15 +2,7 @@
 // Created by Prannaya Gupta
 // 3 Dec 2022
 
-
-
-
-
-
 const sr = ScrollReveal();
-
-
-
 
 function generateOptions(defaultOptions, bindingValue, bindingModifiers) {
   const options = Object.assign({}, defaultOptions, bindingValue);
@@ -75,10 +67,6 @@ const VueScrollReveal = {
     });
   },
 };
-
-
-
-
 
 
 const users = [
@@ -219,7 +207,7 @@ const Home = Vue.extend({
         align="center"
         justify="center"
       >
-        <span style="font-size: 3em">
+        <span style="font-size: 3em" color="white">
           arXiv.nush
         </span>
         <span style="font-size: 1.5em" class="text-wrap">
@@ -348,7 +336,8 @@ const GitHub = Vue.extend({
 
                 <v-row justify='center'>
                 <v-col cols='auto' align-self="center">
-                    <v-text-field v-model="name" label="Username" style="width: auto" v-on:keyup.enter="search" />
+                    <v-text-field v-model="name" label="Username" style="width: auto" v-on:keyup.enter="search" 
+                        prepend-icon="mdi-github" />
                 </v-col>
                 <v-col cols='auto' align-self="center">
                     <v-btn v-on:click=search style="display: block; margin: auto">SEARCH</v-btn>
@@ -620,9 +609,9 @@ Vue.use(Vuetify);
 Vue.use(VueScrollReveal);
 
 const vuetify = new Vuetify({
-  theme: {
-    dark: true
-  }
+//   theme: {
+//     dark: true
+//   }
 });
 const router = new VueRouter({
   routes,
