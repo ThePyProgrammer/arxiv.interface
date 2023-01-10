@@ -758,6 +758,7 @@ var app = new Vue({
             this.username = "";
             this.password = "";
             this.loggedIn = false;
+            router.push('/')
         },
         onScroll() {
             if (window.scrollY > this.height * 0.8) {
