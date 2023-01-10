@@ -287,6 +287,9 @@ const Home = Vue.extend({
         return window.innerWidth;
         },
     },
+    mounted() {
+        window.scrollTo(0, 0)
+    }
 })
 
 const Dashboard = Vue.extend({
@@ -692,6 +695,11 @@ const router = new VueRouter({
   routes,
 });
 
+// router.beforeEach((to, from, next) => {
+//   window.scrollTo(0, 0)
+//   // ...
+// })
+
 
 var app = new Vue({
     el: '#app',
@@ -747,18 +755,21 @@ var app = new Vue({
                 console.log("Logged In Successfully!");
                 this.loggedIn = true;
             }
+            router.push('/');
         },
         register() {
             console.log(`Username: ${this.username}`);
             console.log(`Password: ${this.password}`);
             console.log("Registered Successfully!");
             this.loggedIn = true;
+            router.push('/');
         },
         logout() {
             this.username = "";
             this.password = "";
             this.loggedIn = false;
-            router.push('/')
+            router.push('/');
+            this.drawerShown = false;
         },
         onScroll() {
             if (window.scrollY > this.height * 0.8) {
