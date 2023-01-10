@@ -142,7 +142,7 @@ const projects = [
         num: 3,
         id: "Cyberbullying",
         title: "Detecting Cyberbullying in Localised Text Messages using a Novel Classroom-Based Noisy Student Training Technique",
-        authors: "Kabir Jain, Karimi Jain, Prannaya Gupta",
+        authors: "Kabir Jain, Karimi Zayan, Prannaya Gupta",
         abstract: "",
         reveal: false,
         code: "",
@@ -283,7 +283,10 @@ const Dashboard = Vue.extend({
                                 <v-card-title class="text--primary" style="word-break: break-word;">
                                     {{ project.title }}
                                 </v-card-title>
-                                <v-card-subtitle>{{ project.authors }}</v-card-subtitle>
+                                <v-card-subtitle>
+                                <!--{{ project.authors }}-->
+                                <component :is="names(project)" />
+                                </v-card-subtitle>
                                 <v-card-actions>
                                     <v-btn
                                         color="primary"
@@ -322,6 +325,15 @@ const Dashboard = Vue.extend({
     data() {
         return {
             projects: projects
+        }
+    },
+    methods: {
+        names(project) {
+            return {template:"<p>"+project.authors.split(", ").map((name) => {
+                let options = users.filter((it) => (it.name == name));
+                if(options.length > 0) return `<a href="#/users/${options[0].id}">${name}</a>`;
+                else return name
+            }).join(", ")+"</p>"};
         }
     }
 
