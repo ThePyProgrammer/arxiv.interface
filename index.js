@@ -313,7 +313,7 @@ const Dashboard = Vue.extend({
                                 <v-card-actions>
                                     <v-btn
                                         color="primary"
-                                        dark :href="'#/projects/'+project.id" target="_blank"
+                                        dark :href="'#/projects/'+project.id"
                                     >
                                         Open
                                     </v-btn>
@@ -499,7 +499,10 @@ const Project = Vue.extend({
                         </div>
                     </v-flex>
                     <v-card-title> {{ project.title }} </v-card-title>
-                    <v-card-subtitle> {{ project.authors }} </v-card-subtitle>
+                        <v-card-subtitle>
+                        <!--{{ project.authors }}-->
+                        <component :is="names(project)" />
+                        </v-card-subtitle>
 
                     <v-spacer />
 
@@ -553,6 +556,13 @@ const Project = Vue.extend({
             var content = text;
             content = content.replace(/<\S[^><]*>/gi, "");
             return content.match(/\w+/g) ? content.match(/\w+/g).length : 0;
+        },
+        names(project) {
+            return {template:"<p>"+project.authors.split(", ").map((name) => {
+                let options = users.filter((it) => (it.name == name));
+                if(options.length > 0) return `<a href="#/users/${options[0].id}">${name}</a>`;
+                else return name
+            }).join(", ")+"</p>"};
         }
     },
     mounted() {
