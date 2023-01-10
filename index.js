@@ -95,10 +95,124 @@ const users = [
         graduationYear: 2023
     },
     {
+        id: "h1810104",
+        name: "Mayukh Das",
+        readme: "Hi, I'm Mayukh, an engineer and Rustacean.",
+        graduationYear: 2023
+    },
+    {
         id: "h1910059",
         name: "Kabir Jain",
         readme: "I am Kabir, a resident AI lover and physics lover!",
         graduationYear: 2024
+    },
+    {
+        id: "h1810146",
+        name: "Tan Pin Che",
+        readme: "Hi, I'm Pin Che. I play Genshin apparently.",
+        graduationYear: 2023
+    },
+    {
+        id: "h1810126",
+        name: "Quek Yu Pin",
+        readme: "Hi, I'm Yu Pin. Ball.",
+        graduationYear: 2023
+    },
+    {
+        id: "h2030008",
+        name: "Tran Duc Khang",
+        readme: "Hi I'm Khang. I like PO, and I am alien.",
+        graduationYear: 2023
+    },
+    {
+        id: "h1810038",
+        name: "Ernest Emmanuel Cheong Hao'En",
+        readme: "Hi I'm Ernest and I am TriHrd",
+        graduationYear: 2023
+    },
+    {
+        id: "h1810153",
+        name: "Tia Shi Wei",
+        readme: "Hi, I'm Tia Shi Wei.",
+        graduationYear: 2023
+    },
+    {
+        id: "h2030012",
+        name: "Yu Zheyuan",
+        readme: "Hi, I'm Zane",
+        graduationYear: 2023
+    },
+    {
+        id: "h1910099",
+        name: "Mahir Hitesh Shah",
+        readme: "Hi, I'm Mahir. I am Zayan's protege for AI.",
+        graduationYear: 2024
+    },
+    {
+        id: "h1810081",
+        name: "Liew Wei Pyn",
+        readme: "Hi, I'm Wei Pyn. I read AI papers.",
+        graduationYear: 2023
+    },
+    {
+        id: "h1810086",
+        name: "Lim Sue Han Justin",
+        readme: "Hi, I'm Justin. I like CTFing.",
+        graduationYear: 2023
+    },
+    {
+        id: "h1810006",
+        name: "Aloysius Goo Shao Quan",
+        readme: "I'm Aloysius. I like CTFing.",
+        graduationYear: 2023
+    },
+    {
+        id: "h1810035",
+        name: "Edden Chew Keyn-Hantz",
+        readme: "I'm Edden. I like MO and Cryptography.",
+        graduationYear: 2023
+    },
+    {
+        id: "h1810114",
+        name: "Oh Zhi Yuan",
+        readme: "I'm Ozy, I didn't have a phone till last year.",
+        graduationYear: 2023
+    },
+    {
+        id: "h1810111",
+        name: "Nallapuraju Ananya",
+        readme: "I'm Ananya and I like reading Dan Brown novels.",
+        graduationYear: 2023
+    },
+    {
+        id: "h1810167",
+        name: "Ye Chen Rui",
+        readme: "I'm Chen Rui and I painstakingly learnt R.",
+        graduationYear: 2023
+    },
+    {
+        id: "h1810080",
+        name: "Li Yu Xin Karin",
+        readme: "I'm Karin and I'm more contactable on Discord.",
+        graduationYear: 2023
+    },
+    {
+        id: "h1810028",
+        name: "Claris Yap",
+        readme: "I'm Claris. Orientation was so cool.",
+        graduationYear: 2023
+    },
+    {
+        id: "h2030004",
+        name: "Nguyen The Bach",
+        readme: "I'm Bach. I am pro at Chapteh.",
+        graduationYear: 2023
+    },
+    {
+        id: "h2030009",
+        name: "Trinh Hoang Hai",
+        readme: "Hi, I'm Hai. I take DigiPen",
+        graduationYear: 2023
     }
 ]
 
@@ -115,11 +229,20 @@ const projects = [
     {
         id: "PH022",
         title: "An Automated Screening System for Trinary Star System Candidates",
-        authors: "Cheong Hao'En Ernest Emmanuel, Prannaya Gupta, Vikram Ramanathan, Yap Yuan Xi",
+        authors: "Ernest Emmanuel Cheong Hao'En, Prannaya Gupta, Vikram Ramanathan, Yap Yuan Xi",
         abstract: "The discovery and cataloguing of trinary star systems is of significant interest to the field of astronomy, with implications from stellar system formation dynamics to satellite star capture frequency...",
         reveal: false,
         code: "PH022",
         year: "2022,2023"
+    },
+    {
+        id: "RO028",
+        title: "Deep Equilibrium BERT",
+        authors: "Liew Wei Pyn",
+        abstract: "",
+        reveal: false,
+        code: "RO028",
+        year: "2023"
     },
     {
         id: "BE023",
@@ -158,6 +281,33 @@ const projects = [
         year: "2023"
     },
     {
+        id: "SS024",
+        title: "Interpreting and Evading Visualization-Based Deep Learning Malware Classifiers",
+        authors: "Aloysius Goo Shao Quan, Lim Sue Han Justin",
+        abstract: "",
+        reveal: false,
+        code: "SS024",
+        year: "2023"
+    },
+    {
+        id: "AS009",
+        title: "Active matter cytometry for high-resolution sizing and sorting of zebrafish larvae",
+        authors: "Edden Chew Keyn-Hantz, Oh Zhi Yuan",
+        abstract: "",
+        reveal: false,
+        code: "AS009",
+        year: "2023"
+    },
+    {
+        id: "CB022",
+        title: "Developing an Optogenetic O-GlcNAc Transferase for Single Protein O-GlcNAcylation in Cells",
+        authors: "Li Yu Xin Karin, Ye Chen Rui",
+        abstract: "",
+        reveal: false,
+        code: "CB022",
+        year: "2023"
+    },
+    {
         id: "RO050",
         title: "Legal Beagle: Law Classification and Identification App via Novel Deep Learning Graphical Neural Networks and Attention Networks",
         authors: "Kabir Jain, Mahir Hitesh Shah",
@@ -187,10 +337,28 @@ const projects = [
     {
         id: "22.011.NUSH.PH",
         title: "Detecting and Simulating Stable Three-Body Systems",
-        authors: "Cheong Hao'En Ernest Emmanuel, Prannaya Gupta, Vikram Ramanathan, Yap Yuan Xi",
+        authors: "Ernest Emmanuel Cheong Hao'En, Prannaya Gupta, Vikram Ramanathan, Yap Yuan Xi",
         abstract: "",
         reveal: false,
         code: "22.011.NUSH.PH",
+        year: "2022"
+    },
+    {
+        id: "21.124.DSTA.CS",
+        title: "Machine Learning Based Decision Support",
+        authors: "Aloysius Goo Shao Quan",
+        abstract: "",
+        reveal: false,
+        code: "21.124.DSTA.CS",
+        year: "2022"
+    },
+    {
+        id: "21.074.UrAL.MA",
+        title: "Carparks as Indicators of Urban Dynamics",
+        authors: "Nguyen The Bach, Tran Duc Khang, Trinh Hoang Hai",
+        abstract: "",
+        reveal: false,
+        code: "21.074.UrAL.MA",
         year: "2022"
     },
     {
@@ -203,12 +371,48 @@ const projects = [
         year: "2022"
     },
     {
+        id: "21.038.IHPC.BI",
+        title: "Association of Genetic Risk for Rheumatoid Arthritis with Psychological and Cognitive Well-being",
+        authors: "Li Yu Xin Karin, Ye Chen Rui",
+        abstract: "",
+        reveal: false,
+        code: "21.038.IHPC.BI",
+        year: "2022"
+    },
+    {
+        id: "21.022.NTU_.BI",
+        title: "Understanding the correlations between resilience and role-play",
+        authors: "Claris Yap, Nallapuraju Ananya",
+        abstract: "",
+        reveal: false,
+        code: "21.022.NTU_.BI",
+        year: "2022"
+    },
+    {
         id: "20.022.NUSE.PH",
         title: "Gait Monitoring and Analysis for Parkinson's Disease Patients",
         authors: "Nallapuraju Ananya, Prannaya Gupta, Ye Chen Rui",
         abstract: "",
         reveal: false,
         code: "20.022.NUSE.PH, BE018",
+        year: "2021"
+    },
+    {
+        id: "20.047.DSO_.CS",
+        title: "Social media analytics",
+        authors: "Ashley Aragorn Khoo, Karimi Zayan, Liew Wei Pyn",
+        abstract: "",
+        reveal: false,
+        code: "20.047.DSO_.CS",
+        year: "2021"
+    },
+    {
+        id: "20.115.NUSH.MA",
+        title: "Analysis of a Pseudorandom Bit Generator Based on Elliptic Curves",
+        authors: "Edden Chew Keyn-Hantz, Lim Sue Han Justin",
+        abstract: "",
+        reveal: false,
+        code: "20.115.NUSH.MA",
         year: "2021"
     }
 ]
@@ -277,8 +481,48 @@ const Home = Vue.extend({
       </v-col>
     </v-row>
     </section>
+
+    <section v-scroll-reveal.reset>
+            <v-row
+            align="center"
+            justify="center"
+            style="margin-bottom: 50px"
+            >
+            <v-col
+                align="center"
+                justify="center"
+            >
+                <span style="font-size: 3em">
+                Explore new projects!
+                </span>
+            </v-col>
+            </v-row>
+            <v-layout wrap justify-space-around>
+                <v-flex v-for="project in projects" :key="project.id" style="flex-grow: 0; padding-bottom: 40px;">
+                    <v-card class="mx-auto pa-4" max-width="400px" height="100%">
+                        <v-flex class="text-overline">
+                            <div class="mx-4 d-flex">
+                                {{ project.code }} <v-spacer /> {{ project.year }}
+                            </div>
+                        </v-flex>
+                        <v-card-title class="text--primary" style="word-break: break-word; color:white;">
+                            {{ project.title }}
+                        </v-card-title>
+                        <v-card-subtitle>
+                        <!--{{ project.authors }}-->
+                        <component :is="names(project)" />
+                        </v-card-subtitle>
+                    </v-card>
+                </v-flex>
+            </v-layout>
+    </section>
   </v-container>
     `,
+    data() {
+        return {
+            projects: _.sampleSize(projects.filter(it => (!it.authors.includes("Prannaya Gupta"))), 3)
+        }
+    },
     computed: {
         height() {
             return window.innerHeight;
@@ -288,7 +532,17 @@ const Home = Vue.extend({
         },
     },
     mounted() {
+        console.log(this.projects)
         window.scrollTo(0, 0)
+    },
+    methods: {
+        names(project) {
+            return {template:"<p>"+project.authors.split(", ").map((name) => {
+                let options = users.filter((it) => (it.name == name));
+                if(options.length > 0) return `<a href="#/users/${options[0].id}">${name}</a>`;
+                else return name
+            }).join(", ")+"</p>"};
+        }
     }
 })
 
@@ -585,7 +839,7 @@ const User = Vue.extend({
                 <v-card class="mx-auto pa-4" height="100%">
                     <v-flex class="text-overline">
                         <div class="mx-4 d-flex">
-                            {{ user.id.toUpperCase() }} <v-spacer /> y{{ 2029 - user.graduationYear }}
+                            {{ user.id.toUpperCase() }} <v-spacer /> Y{{ 2029 - user.graduationYear }}
                         </div>
                     </v-flex>
                     <v-card-title> {{ user.name }} </v-card-title>
