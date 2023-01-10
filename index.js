@@ -516,6 +516,25 @@ const Home = Vue.extend({
                 </v-flex>
             </v-layout>
     </section>
+
+    <section v-scroll-reveal.reset>
+      <v-row
+      align="center"
+      justify="center"
+    >
+      <v-col
+        align="center"
+        justify="center"
+      >
+        <span style="font-size: 3em">
+          Ready to get started?
+        </span><br><br>
+        <v-btn color="primary" dark x-large href="#/projects">
+        Let's go!
+        </v-btn>
+      </v-col>
+    </v-row>
+    </section>
   </v-container>
     `,
     data() {
@@ -615,6 +634,9 @@ const Dashboard = Vue.extend({
                 else return name
             }).join(", ")+"</p>"};
         }
+    },
+    mounted() {
+        window.scrollTo(0, 0)
     }
 
 })
