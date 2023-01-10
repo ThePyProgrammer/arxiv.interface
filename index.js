@@ -71,35 +71,30 @@ const VueScrollReveal = {
 
 const users = [
     {
-        num: 0,
         id: "h1810124",
         name: "Prannaya Gupta",
         readme: "Hello, I'm Prannaya! I am an avid researcher, especially in the field of AI!",
         graduationYear: 2023
     },
     {
-        num: 1,
         id: "h1810068",
         name: "Karimi Zayan",
         readme: "I am Zayan. Cool Graph Neural Network!",
         graduationYear: 2023
     },
     {
-        num: 2,
         id: "h1810166",
         name: "Yap Yuan Xi",
         readme: "I am Yuan Xi. I am a CTFer, IOer, Developer, yet somehow I can't do AI :(.",
         graduationYear: 2023
     },
     {
-        num: 3,
         id: "h1810159",
         name: "Vikram Ramanathan",
         readme: "I am Vikram, the mentor rep of 604! I like DnD and stuff.",
         graduationYear: 2023
     },
     {
-        num: 4,
         id: "h1910059",
         name: "Kabir Jain",
         readme: "I am Kabir, a resident AI lover and physics lover!",
@@ -109,7 +104,6 @@ const users = [
 
 const projects = [
     {
-        num: 0,
         id: "ES009",
         title: "Optimization of the Telemetry, Tracking and Commmunications System in a CubeSat",
         authors: "Mayukh Das, Prannaya Gupta",
@@ -119,7 +113,6 @@ const projects = [
         year: "2023"
     },
     {
-        num: 1,
         id: "PH022",
         title: "An Automated Screening System for Trinary Star System Candidates",
         authors: "Cheong Hao'En Ernest Emmanuel, Prannaya Gupta, Vikram Ramanathan, Yap Yuan Xi",
@@ -129,7 +122,6 @@ const projects = [
         year: "2022,2023"
     },
     {
-        num: 2,
         id: "BE023",
         title: "Analysing Gait Patterns of PD Patients to Predict FoG using Machine Learning Algorithms",
         authors: "Nallapuraju Ananya, Prannaya Gupta, Ye Chen Rui",
@@ -139,7 +131,42 @@ const projects = [
         year: "2023"
     },
     {
-        num: 3,
+        id: "BE018",
+        title: "Shielding-Free Signal Noise Suppression in Portable Low-Field MRI",
+        authors: "Tran Duc Khang, Yap Yuan Xi",
+        abstract: "",
+        reveal: false,
+        code: "BE018",
+        year: "2023"
+    },
+    {
+        id: "SS020",
+        title: "LEDA: A Lightweight Game Engine using C++ Component-Based Techniques",
+        authors: "Quek Yu Pin, Tan Pin Che, Yap Yuan Xi",
+        abstract: "",
+        reveal: false,
+        code: "SS020",
+        year: "2023"
+    },
+    {
+        id: "RO032",
+        title: "longest simple path with Machine Learning",
+        authors: "Karimi Zayan, Tia Shi Wei, Yu Zheyuan",
+        abstract: "",
+        reveal: false,
+        code: "RO032",
+        year: "2023"
+    },
+    {
+        id: "RO050",
+        title: "Legal Beagle: Law Classification and Identification App via Novel Deep Learning Graphical Neural Networks and Attention Networks",
+        authors: "Kabir Jain, Mahir Hitesh Shah",
+        abstract: "",
+        reveal: false,
+        code: "RO050",
+        year: "2023"
+    },
+    {
         id: "Cyberbullying",
         title: "Detecting Cyberbullying in Localised Text Messages using a Novel Classroom-Based Noisy Student Training Technique",
         authors: "Kabir Jain, Karimi Zayan, Prannaya Gupta",
@@ -149,7 +176,6 @@ const projects = [
         year: "2023"
     },
     {
-        num: 4,
         id: "SS028",
         title: "Detecting Malware Samples using a Novel Feature Vector and Deep Learning Methods",
         authors: "Ashwin Lokesh, Ishneet Sukhvinder Singh, Lam Yik Ting, Lim Sue Han Justin, Prannaya Gupta, Yau Le Qi",
@@ -159,7 +185,6 @@ const projects = [
         year: "2023"
     },
     {
-        num: 5,
         id: "22.011.NUSH.PH",
         title: "Detecting and Simulating Stable Three-Body Systems",
         authors: "Cheong Hao'En Ernest Emmanuel, Prannaya Gupta, Vikram Ramanathan, Yap Yuan Xi",
@@ -169,7 +194,6 @@ const projects = [
         year: "2022"
     },
     {
-        num: 6,
         id: "21.029.SUTD.CS",
         title: "Embodied AI for computational perception and understanding of spatial designs",
         authors: "Karimi Zayan, Prannaya Gupta",
@@ -179,7 +203,6 @@ const projects = [
         year: "2022"
     },
     {
-        num: 7,
         id: "20.022.NUSE.PH",
         title: "Gait Monitoring and Analysis for Parkinson's Disease Patients",
         authors: "Nallapuraju Ananya, Prannaya Gupta, Ye Chen Rui",
@@ -273,7 +296,7 @@ const Dashboard = Vue.extend({
             <v-container fluid>
                     <h1>Your Projects</h1>
                     <v-layout wrap justify-space-around>
-                        <v-flex v-for="project in projects" :key="project.num" style="flex-grow: 0; padding-bottom: 40px;">
+                        <v-flex v-for="project in projects" :key="project.id" style="flex-grow: 0; padding-bottom: 40px;">
                             <v-card class="mx-auto pa-4" max-width="400px" height="100%">
                                 <v-flex class="text-overline">
                                     <div class="mx-4 d-flex">
@@ -324,7 +347,7 @@ const Dashboard = Vue.extend({
     `,
     data() {
         return {
-            projects: projects
+            projects: projects.filter((project) => (project.authors.includes("Prannaya Gupta")))
         }
     },
     methods: {
@@ -556,25 +579,55 @@ const User = Vue.extend({
                     <v-card-subtitle> {{ user.readme }} </v-card-subtitle>
                 </v-card>
             </v-flex>
-
+            <v-layout wrap justify-space-around style="margin-top:50px">
+                <v-flex v-for="project in projects" :key="project.id" style="flex-grow: 0; padding-bottom: 40px;">
+                    <v-card class="mx-auto pa-4" max-width="400px" height="100%">
+                        <v-flex class="text-overline">
+                            <div class="mx-4 d-flex">
+                                {{ project.code }} <v-spacer /> {{ project.year }}
+                            </div>
+                        </v-flex>
+                        <v-card-title class="text--primary" style="word-break: break-word;">
+                            {{ project.title }}
+                        </v-card-title>
+                        <v-card-subtitle>
+                        <!--{{ project.authors }}-->
+                        <component :is="names(project)" />
+                        </v-card-subtitle>
+                    </v-card>
+                </v-flex>
+            </v-layout>
         </v-container>
     `,
     data() {
         return {
-            // project: {}
+            // projects: projects
         }
     },
     computed: {
        user() {
-            return this.classify(this.$route.params.id);
+            let user = this.classify(this.$route.params.id);
+            return user
+        },
+        projects() {
+            return projects.filter((project) => (project.authors.includes(this.user.name)));
         }
     },
     methods: {
         classify(id) {
-            return users.filter((it) => (it.id == id))[0];
+            let user = users.filter((it) => (it.id == id))[0];
+            return user;
+        },
+        names(project) {
+            return {template:"<p>"+project.authors.split(", ").map((name) => {
+                let options = users.filter((it) => (it.name == name));
+                if(options.length > 0) return `<a href="#/users/${options[0].id}">${name}</a>`;
+                else return name
+            }).join(", ")+"</p>"};
         }
     },
     mounted() {
+        // this.projects = this.projects.filter((project) => (project.authors.includes(this.user.name)))
         // this.project = this.classify(this.$route.params.id);
         // this.tempAbstract = this.project.abstract;
     }
