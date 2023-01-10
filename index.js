@@ -570,7 +570,9 @@ const Dashboard = Vue.extend({
     template: `
         <v-flex>
             <v-container fluid>
-                    <h1>Your Projects</h1>
+            <v-card class="mx-auto pa-4" height="100%">
+            <v-card-title class="text--primary">Your Projects</v-card-title>
+                    <!--<h1>Your Projects</h1>-->
                     <v-layout wrap justify-space-around>
                         <v-flex v-for="project in projects" :key="project.id" style="flex-grow: 0; padding-bottom: 40px;">
                             <v-card class="mx-auto pa-4" max-width="400px" height="100%">
@@ -618,6 +620,7 @@ const Dashboard = Vue.extend({
                             </v-card>
                         </v-flex>
                     </v-layout>
+                </v-card>
             </v-container>
         </v-flex>
     `,
@@ -868,7 +871,9 @@ const User = Vue.extend({
                     <v-card-subtitle> {{ user.readme }} </v-card-subtitle>
                 </v-card>
             </v-flex>
-            <v-layout wrap justify-space-around style="margin-top:50px">
+            <v-card class="mx-auto pa-4" height="100%" style="margin-top:20px">
+            <v-card-title>Projects</v-card-title>
+            <v-layout wrap justify-space-around>
                 <v-flex v-for="project in projects" :key="project.id" style="flex-grow: 0; padding-bottom: 40px;">
                     <v-card class="mx-auto pa-4" max-width="400px" height="100%">
                         <v-flex class="text-overline">
@@ -886,6 +891,7 @@ const User = Vue.extend({
                     </v-card>
                 </v-flex>
             </v-layout>
+            </v-card>
         </v-container>
     `,
     data() {
