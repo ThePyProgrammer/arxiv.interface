@@ -930,6 +930,23 @@ const User = Vue.extend({
 })
 
 
+const Contact = Vue.extend({
+    template: `
+    <v-container fluid>
+        <v-flex>
+            <v-card class="mx-auto pa-4" height="100%">
+                <v-card-title>Contact Us</v-card-title>
+                <v-card-text>
+                Contact the programmer at <a href="mailto:h1810124@nushigh.edu.sg">h1810124@nushigh.edu.sg</a>.<br/>
+
+                Contact RIE at <a href="mailto:rie@nushigh.edu.sg">rie@nushigh.edu.sg</a>.
+            </v-card>
+        </v-flex>
+    </v-container>
+    `,
+})
+
+
 const routes = [
     {
         name: "Home",
@@ -962,6 +979,10 @@ const routes = [
     { 
         path: '/projects/:id',
         component: Project
+    },
+    {
+        path: "/contact",
+        component: Contact
     }
 ]
 
@@ -1025,6 +1046,11 @@ var app = new Vue({
                     name: "Profile",
                     path: "/users/h1810124",
                     icon: "mdi-account"
+                },
+                {
+                    name: "Contact Us",
+                    path: "/contact",
+                    icon: "mdi-email"
                 }
             ]
         };
