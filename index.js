@@ -936,10 +936,33 @@ const Contact = Vue.extend({
         <v-flex>
             <v-card class="mx-auto pa-4" height="100%">
                 <v-card-title>Contact Us</v-card-title>
-                <v-card-text>
-                Contact the programmer at <a href="mailto:h1810124@nushigh.edu.sg">h1810124@nushigh.edu.sg</a>.<br/>
+                    
 
-                Contact RIE at <a href="mailto:rie@nushigh.edu.sg">rie@nushigh.edu.sg</a>.
+                <v-form ref="form" lazy-validation>
+                    <v-row align="center" justify="center" class="ma-4">
+                        <v-col cols="12" sm="4">
+                            <h3>Student ID</h3>
+                            <v-text-field x-large placeholder="hXXX0XXX" prepend-icon="mdi-card-account-details" required>
+                            </v-text-field>
+                            <v-spacer />
+                            <h3>Name</h3>
+                            <v-text-field x-large placeholder="Your Name" prepend-icon="mdi-account" required>
+                            </v-text-field>
+                            <v-spacer />
+                        </v-col>
+                        <v-col cols="12" sm="4">
+                            <h3 style="margin-bottom:10px;">Query</h3>
+                            <v-textarea outlined x-large placeholder="Your Query" required>
+                            </v-textarea>
+                            <v-spacer />
+                        </v-col>
+                    </v-row>
+                </v-form>
+                <v-row align="center" justify="center" class="my-6">
+                    <v-btn x-large color="primary">
+                        Send!
+                    </v-btn>
+                </v-row>
             </v-card>
         </v-flex>
     </v-container>
