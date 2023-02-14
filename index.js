@@ -711,7 +711,7 @@ const SSEF = Vue.extend({
                     ></v-text-field>
                 </v-col>
                 </v-row>
-                <v-data-table :items-per-page="15" :headers=headers :items=projects class="elevation-1"
+                <v-data-table :items-per-page="15" :headers=headers :items=projects class="elevation-1" loading-text="Loading... Please wait"
                             :footer-props="{showFirstLastPage: true, firstIcon: 'mdi-arrow-collapse-left', lastIcon: 'mdi-arrow-collapse-right'}"
                             :loading=loadingProjects :search="search">
                 </v-data-table>
