@@ -752,15 +752,32 @@ const SSEF = Vue.extend({
             data = data.slice(start, end).replace("\t", "");
             start = data.indexOf("[");
             end = data.lastIndexOf("]")+1;
-            data = JSON.parse(data.slice(start, end)).filter((it) => it.status == 20 || it.status == 60).map(
+            data = JSON.parse(data.slice(start, end)).map(
                 (object) => {
+                    let label = '';
+                    if(object.status == 5){
+                  	    label = 'Saved';
+                  	} else if(object.status == 10){
+                  		  label = 'Registered';
+                  	}else if(object.status == 20){
+                  		label = 'File Submitted';
+                  	} else if(object.status == 30){
+                  		label = 'Pre-judge Processing';
+                  	} else if(object.status == 40){
+                  		label = 'Pre-judge Done';
+                  	} else if(object.status == 50){
+                  		label = 'Not in Final';
+                  	} else if(object.status == 60){
+                  		label = 'Final';
+                  	}
+                  
                     return {
                         projectCode: object.category1 + object.projectCode.toString().padStart(3, "0"),
                         lastUpdated: moment(object.submissionDate, "DD/MM/YYYY hh:mm").toDate(),
                         teamLeader: object.memberName,
                         school: object.school.replace("&#39", "'"),
                         title: object.title.replace("&#39", "'"),
-                        status: object.status == 20 ? "Not In Final": "Final"
+                        status: label
                     }
                 }
             );
@@ -770,6 +787,28 @@ const SSEF = Vue.extend({
     }
   }
 })
+
+
+/*
+
+if(status==5){
+		label ='Saved';
+	}else if(status==10){
+		label ='Registered';
+	}else if(status==20){
+		label = 'File Submitted';
+	}else if(status==30){
+		label = 'Pre-judge Processing';
+	}else if(status==40){
+		label = 'Pre-judge Done';
+	}else if(status==50){
+		label = 'Not in Final';
+	}
+	else if(status==60){
+		label = 'Final';
+	}
+
+ */
 
 const Project = Vue.extend({
     name: "Project",
