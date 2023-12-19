@@ -788,28 +788,6 @@ const SSEF = Vue.extend({
   }
 })
 
-
-/*
-
-if(status==5){
-		label ='Saved';
-	}else if(status==10){
-		label ='Registered';
-	}else if(status==20){
-		label = 'File Submitted';
-	}else if(status==30){
-		label = 'Pre-judge Processing';
-	}else if(status==40){
-		label = 'Pre-judge Done';
-	}else if(status==50){
-		label = 'Not in Final';
-	}
-	else if(status==60){
-		label = 'Final';
-	}
-
- */
-
 const Project = Vue.extend({
     name: "Project",
     template: `
