@@ -775,8 +775,8 @@ const SSEF = Vue.extend({
                         projectCode: object.category1 + object.projectCode.toString().padStart(3, "0"),
                         lastUpdated: moment(object.submissionDate, "DD/MM/YYYY hh:mm").toDate(),
                         teamLeader: object.memberName,
-                        school: object.school.replace("&#39", "'"),
-                        title: object.title.replace("&#39", "'"),
+                        school: object.school.replace(/&#39/g, "'").replace(/&#34/g, "\"").replace(/&#38/g, "&"),
+                        title: object.title.replace(/&#39/g, "'").replace(/&#34/g, "\"").replace(/&#38/g, "&"),
                         status: label
                     }
                 }
